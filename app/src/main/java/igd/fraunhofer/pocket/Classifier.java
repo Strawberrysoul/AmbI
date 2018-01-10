@@ -68,8 +68,12 @@ class Classifier {
             {
 //                add(PositionOptions.STANDING.toString());
 //                add(PositionOptions.SITTING.toString());
-                add(PositionOptions.LEFT.toString());
-                add(PositionOptions.RIGHT.toString());
+                add(PositionOptions.LEFTKNEE.toString());
+                add(PositionOptions.RIGHTKNEE.toString());
+                add(PositionOptions.LEFTTABLE.toString());
+                add(PositionOptions.RIGHTTABLE.toString());
+                add(PositionOptions.FRONT.toString());
+                add(PositionOptions.BACK.toString());
             }
         };
 
@@ -105,9 +109,13 @@ class Classifier {
         Log.d("Predicted:  ", className);
         switch (className){
             case "STANDING": position = new Position(PositionOptions.STANDING); break;
-            case "LEFT": position = new Position(PositionOptions.LEFT); break;
-            case "RIGHT": position = new Position(PositionOptions.RIGHT); break;
+            case "LEFTTABLE": position = new Position(PositionOptions.LEFTTABLE); break;
+            case "RIGHTTABLE": position = new Position(PositionOptions.RIGHTTABLE); break;
+            case "LEFTKNEE": position = new Position(PositionOptions.LEFTKNEE); break;
+            case "RIGHTKNEE": position = new Position(PositionOptions.RIGHTKNEE); break;
             case "SITTING": position = new Position(PositionOptions.SITTING); break;
+            case "BACK": position = new Position(PositionOptions.BACK); break;
+            case "FRONT": position = new Position(PositionOptions.FRONT); break;
             default: position = new Position(PositionOptions.PROXIMITY);
         }
         return position;

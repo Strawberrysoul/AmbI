@@ -19,10 +19,14 @@ class Position {
     int getPositionResource(){
         int res;
         switch (pos.toString()){
-            case "STANDING": res = R.drawable.standing; break;
-            case "LEFT": res = R.drawable.leanleft; break;
-            case "RIGHT": res = R.drawable.leanright; break;
-            case "SITTING": res = R.drawable.sitting; break;
+            case "STANDING": res = R.drawable.ic_stand; break;
+            case "LEFTTABLE": res = R.drawable.ic_lefttable; break;
+            case "RIGHTTABLE": res = R.drawable.ic_righttable; break;
+            case "LEFTKNEE": res = R.drawable.ic_leftknee; break;
+            case "RIGHTKNEE": res = R.drawable.ic_rightknee; break;
+            case "SITTING": res = R.drawable.ic_sitting; break;
+            case "BACK": res = R.drawable.ic_back; break;
+            case "FRONT": res = R.drawable.ic_front; break;
             default: res = R.drawable.unknown;
         }
         return res;
@@ -30,5 +34,5 @@ class Position {
 }
 
 enum PositionOptions {
-   STANDING,  LEFT, RIGHT, SITTING, PROXIMITY
+   STANDING,  LEFTKNEE, SITTING, RIGHTKNEE, FRONT, BACK, LEFTTABLE, RIGHTTABLE, PROXIMITY
 }
