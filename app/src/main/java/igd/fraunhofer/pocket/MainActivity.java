@@ -38,8 +38,8 @@ public class MainActivity extends AppCompatActivity {
     void setData(byte[] data, String message){
 //        debugTextView.setText(message + " data" + Arrays.toString(data));        //for debug
         debugTextView.setText(message);
-//        Position p = classifier.classifyValues(message);
-        Position p = classifier.processValues(message);
+        Position p = classifier.classifyValues(message);
+        //Position p = classifier.processValues(message);
         switchImage(p);
     }
 
