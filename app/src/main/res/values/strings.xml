@@ -2,4 +2,12 @@
     <string name="app_name">Pocket</string>
     <string name="disconnect">Disconnect</string>
     <string name="connect">Connect</string>
+
+    <string-array name="classifier_array">
+        <item>Rot</item>
+        <item>Lila</item>
+        <item>Grün</item>
+        <item>Blau</item>
+    </string-array>
+
 </resources>

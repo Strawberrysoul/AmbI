@@ -8,7 +8,14 @@ import android.util.Log;
 import java.util.ArrayList;
 import java.util.List;
 
+import weka.classifiers.bayes.NaiveBayes;
 import weka.classifiers.functions.SMO;
+import weka.classifiers.lazy.IBk;
+import weka.classifiers.lazy.KStar;
+import weka.classifiers.lazy.LWL;
+import weka.classifiers.meta.AdaBoostM1;
+import weka.classifiers.meta.RandomCommittee;
+import weka.classifiers.trees.J48;
 import weka.classifiers.trees.RandomForest;
 import weka.core.Attribute;
 import weka.core.DenseInstance;
@@ -25,11 +32,25 @@ class Classifier {
     private weka.classifiers.AbstractClassifier mClassifier = null;
     private Context context;
 
-    public Classifier(Context mContext){
+    public Classifier(Context mContext, int pos){
         AssetManager assetManager = mContext.getAssets();
         try {
             Log.d("Classifier ", "Loading model...");
-            mClassifier = (RandomForest) weka.core.SerializationHelper.read(assetManager.open("BLAU_RandomForest_Model.model"));
+            switch(pos) {
+                case 0:
+                    mClassifier = (SMO) weka.core.SerializationHelper.read(assetManager.open("Rot_SVM.model"));
+                    break;
+                case 1:
+                    mClassifier = (SMO) weka.core.SerializationHelper.read(assetManager.open("Lila_SVM.model"));
+                    break;
+                case 2:
+                    mClassifier = (SMO) weka.core.SerializationHelper.read(assetManager.open("Gruen_SVM.model"));
+                    break;
+                case 3:
+                    mClassifier = (NaiveBayes) weka.core.SerializationHelper.read(assetManager.open("Blau_AdaBoost.model"));
+                    break;
+            }
+
             Log.d("Classifier ", "Loading model...DONE!");
         } catch (Exception e) {
             e.printStackTrace();
@@ -70,7 +91,7 @@ class Classifier {
         sensorReadings[6]= Integer.parseInt(split[6]);
         sensorReadings[7]= Integer.parseInt(split[7]);
 
-        //Log.d("Sensorreadings",""+sensorReadings[0]+", "+sensorReadings[1]+", "+sensorReadings[2]+", "+sensorReadings[3]);
+        Log.d("Sensorreadings",""+sensorReadings[0]+", "+sensorReadings[1]+", "+sensorReadings[2]+", "+sensorReadings[3]);
 
         //Create variables of type Attribute
         final Attribute attr_sensor1 = new Attribute("Patch1");

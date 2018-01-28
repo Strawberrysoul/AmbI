@@ -9,9 +9,15 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Spinner;
+import android.app.Activity;
+import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
+import android.widget.AdapterView.OnItemSelectedListener;
 
 import app.akexorcist.bluetotohspp.library.BluetoothState;
 import app.akexorcist.bluetotohspp.library.DeviceList;
+
 
 public class MainActivity extends AppCompatActivity {
     private Bluetooth bluetooth;
@@ -27,9 +33,31 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_pocket);
         this.context = super.getApplicationContext();
-        classifier = new Classifier(context);
+        //classifier = new Classifier(context);
         bluetooth = new Bluetooth(this);
         debugTextView = (TextView)findViewById(R.id.valueTextView);
+
+        Spinner spinner = (Spinner) findViewById(R.id.spinner1);
+        // Create an ArrayAdapter using the string array and a default spinner layout
+        ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(this,
+                R.array.classifier_array, android.R.layout.simple_spinner_item);
+        // Specify the layout to use when the list of choices appears
+        adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        // Apply the adapter to the spinner
+        spinner.setAdapter(adapter);
+
+        spinner.setOnItemSelectedListener(new OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> parent, View view,
+                                       int position, long id) {
+                classifier = new Classifier(context, position);
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> parent) {
+                // TODO Auto-generated method stub
+            }
+        });
     }
 
 
@@ -112,4 +140,7 @@ public class MainActivity extends AppCompatActivity {
         connected = true;
         ((Button) findViewById(R.id.connectButton)).setText(R.string.disconnect);
     }
+
+
+
 }
