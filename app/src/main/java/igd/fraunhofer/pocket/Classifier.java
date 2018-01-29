@@ -47,7 +47,7 @@ class Classifier {
                     mClassifier = (SMO) weka.core.SerializationHelper.read(assetManager.open("Gruen_SVM.model"));
                     break;
                 case 3:
-                    mClassifier = (NaiveBayes) weka.core.SerializationHelper.read(assetManager.open("Blau_AdaBoost.model"));
+                    mClassifier = (AdaBoostM1) weka.core.SerializationHelper.read(assetManager.open("Blau_AdaBoost.model"));
                     break;
             }
 
